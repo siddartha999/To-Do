@@ -4,8 +4,22 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": ""
+    "start": "node app.js",
+    "devStart": "nodemon app.js"
   },
   "author": "Siddartha Tummala",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^11.0.0",
+    "express": "^4.17.2",
+    "google-auth-library": "^7.11.0",
+    "googleapis": "^92.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^3.1.2",
+    "mongoose": "^6.1.6",
+    "nodemon": "^2.0.15",
+    "uuid": "^8.3.2"
+  }
 }
