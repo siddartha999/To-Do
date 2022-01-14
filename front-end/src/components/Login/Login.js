@@ -20,7 +20,7 @@ const Login = () => {
                     token: response.data.token,
                     profile: response.data.user
                 };
-                localStorage.setItem("betterreadsuserinfo", JSON.stringify(userObj));
+                localStorage.setItem("todouserinfo", JSON.stringify(userObj));
                 setUser(userObj);
             }
         });
@@ -41,10 +41,7 @@ const Login = () => {
                         <p className="Login-header-caption">A space to track all your tasks</p>
                 </div>
                 <div className="Login-types-wrapper">
-                    <div className="Login-types-text-wrapper">
-                        <p>{`Discover & read more`}</p>
-                    </div>
-                    <div className="Login-google">
+                    <div className="Login-google" title='Google Login'>
                         <GoogleLogin
                             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                             buttonText="Continue with Google"
