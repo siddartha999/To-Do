@@ -18,8 +18,4 @@ const userSchema = mongoose.Schema({
     }
 });
 
-userSchema.index({
-    _id: 'text'
-});
-
 module.exports = mongoose.model('User', userSchema); 

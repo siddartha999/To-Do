@@ -23,3 +23,12 @@ const corsOptions ={
     optionSuccessStatus:200,
 }
 app.use(cors(corsOptions));
+
+
+//Routes
+
+const oauthRoute = require('./routes/auth');
+app.use('/api/login', oauthRoute);
+
+
+app.listen(PORT, () => console.log("Server is up & running!"));
