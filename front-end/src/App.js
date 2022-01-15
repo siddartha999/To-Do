@@ -6,7 +6,7 @@ import ScreenWidthContext from './contexts/ScreenWidthContext';
 import SnackbarContext from './contexts/SnackbarContext';
 import Login from './components/Login/Login';
 import ButtonAppBar from './components/AppBar/AppBar';
-import CurrentTasks from './components/CurrentTasks/CurrentTasks';
+import Tasks from './components/Tasks/Tasks';
 import SnackBar from './components/Snackbar/Snackbar';
 
 const App = () => {
@@ -39,9 +39,7 @@ const App = () => {
     <>
       <ButtonAppBar />
       <div className="App-body">
-        <div className='App-Tasks-wrapper'>
-          <CurrentTasks />
-        </div>
+          <Tasks />
       </div>
     </>
   );

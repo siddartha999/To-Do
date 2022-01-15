@@ -1,0 +1,23 @@
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded {
+    width: 50%;
+    height: 50%;
+}
+
+.ProfileDialog-header-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ProfileDialog-header-wrapper > p {
+    margin: 0 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.ProfileDialog-sign-out {
+    color: red;
+    cursor: pointer;
+}

@@ -1,0 +1,194 @@
+.CurrentTasks {
+    width: 35%;
+    height: 80%;
+    overflow-y: auto;
+    transition: 0.3s;
+    border-radius: 5px;
+    box-shadow: 8px 8px 12px 8px rgb(0 0 0 / 20%);
+    overflow-y: hidden;
+}
+
+.Tasks-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    height: 100%;
+    padding-top: 0.5rem;
+}
+
+.CurrentTasks > p, .CompletedTasks > p {
+    text-align: center;
+    font-weight: bold;
+}
+
+.CurrentTasks-add-task-wrapper {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.CurrentTasks-add-task {
+    width: 70%;
+}
+
+.CurrentTasks-add-task >  .MuiFormControl-root.MuiTextField-root {
+    width: 100%;
+}
+
+.CurrentTasks-tasks-wrapper {
+    height: 70%;
+    overflow-y: auto;
+}
+
+.CurrentTasks-tasks {
+    transition: height 1s ease-in;
+}
+
+.CurrentTasks-add-icon {
+    cursor: pointer;
+    padding-top: 1.5rem;
+    padding-left: 1rem;
+}
+
+.CurrentTasks-current-task-wrapper {
+    background-color: bisque; 
+    padding: 1px;
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.CurrentTasks-current-task {
+    margin-left: 5px;
+    width: 80%;
+}
+
+
+.CurrentTasks-pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+}
+
+.CurrentTasks-length-info {
+    padding-top: 1rem;
+    padding-right: 0.5rem;
+}
+
+CurrentTasks-length-info > p {
+    margin: 0;
+}
+
+.CurrentTasks-delete-wrapper, .CurrentTasks-check-wrapper, .CurrentTasks-star-wrapper {
+    cursor: pointer;
+}
+
+.CurrentTasks-delete-wrapper {
+    position: absolute;
+    right: 3rem;
+}
+
+.CurrentTasks-check-wrapper {
+    position: absolute;
+    right: 1rem;
+}
+
+.CurrentTasks-star-wrapper:hover > svg {
+    fill: gold;  
+}
+
+.CurrentTasks-check-wrapper:hover > svg {
+    fill: greenyellow;
+}
+
+.CompletedTasks {
+    width: 35%;
+    height: 80%;
+    overflow-y: auto;
+    transition: 0.3s;
+    border-radius: 5px;
+    box-shadow: 8px 8px 12px 8px rgb(0 0 0 / 20%);
+    overflow-y: hidden;
+}
+
+.CompletedTasks-tasks-wrapper {
+    height: 80%;
+    overflow-y: auto;
+    transition: height 0.5s ease;
+}
+
+.CompletedTasks-current-task-wrapper {
+    background-color: slateblue;
+    color: azure;
+    padding: 1px;
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.CompletedTasks-current-task {
+    margin-left: 5px;
+    width: 80%;
+}
+
+.CompletedTasks-delete-wrapper, .CompletedTasks-check-wrapper {
+    cursor: pointer;
+}
+
+
+.CompletedTasks-delete-wrapper {
+    position: absolute;
+    right: 3rem;
+}
+
+.CompletedTasks-check-wrapper {
+    position: absolute;
+    right: 1rem;
+}
+
+.CompletedTasks-check-wrapper:hover > svg {
+    fill: red;
+}
+
+.No-results {
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+    top: 50%;
+}
+
+
+/** ---------------------------------------------   Mobile Specific ----------------------------------------- **/
+
+.Tasks-wrapper.mobile400, .Tasks-wrapper.mobile750 {
+    flex-wrap: wrap;
+    padding-bottom: 35rem;
+}
+
+.Tasks-wrapper.mobile400 >.CurrentTasks {
+    width: 90%;
+    margin: 1rem;
+}
+
+.Tasks-wrapper.mobile750 > .CurrentTasks {
+    width: 70%;
+    margin: 1rem;
+}
+
+.Tasks-wrapper.mobile400 >.CompletedTasks{
+    width: 90%;
+    margin: 2rem;
+}
+
+.Tasks-wrapper.mobile750 > .CompletedTasks {
+    width: 70%;
+    margin: 2rem;
+}
