@@ -39,7 +39,7 @@ const ProfileDialog = (props) => {
         setUser(null);
     }
 
-    const averageCompleted = userStats ? (userStats.completedTasks / (userStats.currentTasks || 0 + userStats.completedTasks || 0)) * 100 : 0;
+    const averageCompleted = userStats ? ( (userStats.completedTasks || 0) / ( (userStats.currentTasks || 0) + (userStats.completedTasks || 0))) * 100 : 0;
 
     /**
      * Handler to close the Dialog. 
@@ -108,7 +108,7 @@ const ProfileDialog = (props) => {
                                 radius={100}
                                 className={`${averageCompleted > 75 ? 'green' : averageCompleted > 50 ? 'orange' : 'red'}`}
                             >
-                                <span className="Profile-stats-rating-content">{userStats.completedTasks || 0} / {userStats.completedTasks || 0 + userStats.currentTasks || 0}</span>
+                                <span className="Profile-stats-rating-content">{userStats.completedTasks || 0} / { (userStats.completedTasks || 0) + (userStats.currentTasks || 0)}</span>
                             </ProgressBar>
                         </div>
                         <div className='ProfileDialog-stats-content-wrapper'>

@@ -122,7 +122,7 @@ const deleteCurrentTask = async (req, res) => {
         }).exec();
         
         let userTask = await Tasks.findById(userId).select("currentCount").exec();
-        userTask.currentCount--;
+        userTask.currentCount = userTask.currentCount - 1;
         userTask.save();
         return res.status(200).json({
             message: "A current task has been successfully deleted",
@@ -162,7 +162,7 @@ const deleteCompletedTask = async (req, res) => {
         }).exec();
         
         let userTask = await Tasks.findById(userId).select("completedCount").exec();
-        userTask.completedCount--;
+        userTask.completedCount = userTask.completedCount - 1;
         userTask.save();
         return res.status(200).json({
             message: "A completed task has been successfully deleted",
@@ -213,8 +213,8 @@ const toggleCurrentCompletedTasks = async (req, res) => {
                     current: $push
                 }
             }).exec();
-            completedCount.completedCount--;
-            currentCount.currentCount++;
+            completedCount.completedCount = completedCount.completedCount - 1;
+            currentCount.currentCount = currentCount.currentCount + 1;
             await completedCount.save();
             await currentCount.save();
             return res.status(200).json({
@@ -233,8 +233,8 @@ const toggleCurrentCompletedTasks = async (req, res) => {
                     completed: $push
                 }
             }).exec();
-            completedCount.completedCount++;
-            currentCount.currentCount--;
+            completedCount.completedCount = completedCount.completedCount + 1;
+            currentCount.currentCount = currentCount.currentCount - 1;
             await completedCount.save();
             await currentCount.save();
             return res.status(200).json({
