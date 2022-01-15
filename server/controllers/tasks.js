@@ -44,6 +44,14 @@ const retrieveCurrentTasks = async (req, res) => {
     const userId = req.userId;
     const skip = (req.query?.skip - 0 || 0) * 10;
     try {
+        //Verify whether the UserId entry exists in the collection.
+        let userCurrentTasks = await Tasks.findById(userId).exec();
+        if(!userCurrentTasks) {
+            return res.status(200).json({
+                tasks: [],
+                total: 0
+            });
+        }
         let tasksSize = await Tasks.findById(userId).select("currentCount").exec();
         let userTasks = await Tasks.findById(userId).slice('current', skip === 0 ? - 10 : [(-1 * skip) - 10, tasksSize.currentCount - (skip * 1)]).exec();
         return res.status(200).json({
@@ -67,6 +75,14 @@ const retrieveCompletedTasks = async (req, res) => {
     const userId = req.userId;
     const skip = (req.query?.skip - 0 || 0) * 10;
     try {
+        //Verify whether the UserId entry exists in the collection.
+        let userCompletedTasks = await Tasks.findById(userId).exec();
+        if(!userCompletedTasks) {
+            return res.status(200).json({
+                tasks: [],
+                total: 0
+            });
+        }
         let tasksSize = await Tasks.findById(userId).select("completedCount").exec();
         let userTasks = await Tasks.findById(userId).slice('completed', skip === 0 ? - 10 : [(-1 * skip) - 10, tasksSize.completedCount - (skip * 1)]).exec();
         return res.status(200).json({
@@ -161,6 +177,11 @@ const deleteCompletedTask = async (req, res) => {
     }
 };
 
+
+/**
+ * Controller to toggle the tasks from Current to Completed and vice-versa.
+ */
+
 const toggleCurrentCompletedTasks = async (req, res) => {
     const userId = req.userId;
     const data = req.body;
@@ -198,7 +219,7 @@ const toggleCurrentCompletedTasks = async (req, res) => {
             await currentCount.save();
             return res.status(200).json({
                 message: 'The task has been removed from Completed list',
-                completedCount: completedCount
+                completedCount: completedCount.completedCount
             });
         }
         else {
@@ -230,9 +251,31 @@ const toggleCurrentCompletedTasks = async (req, res) => {
     }
 };
 
+
+/**
+ * Controller to retrieve stats for the current User.
+ */
+const retrieveUserStats = async (req, res) => {
+    const userId = req.userId;
+    try {
+        const userStats = await Tasks.findById(userId).select("currentCount completedCount").exec();
+        return res.status(200).json({
+            currentTasks: userStats?.currentCount,
+            completedTasks: userStats?.completedCount
+        });
+    }
+    catch(err) {
+        console.log(err);
+        return res.status(500).json({
+            message: "Unable to retrieve Stats for the current User. Please try again later"
+        });
+    }
+};
+
 module.exports.createNewTask = createNewTask;
 module.exports.retrieveCurrentTasks = retrieveCurrentTasks;
 module.exports.deleteCurrentTask = deleteCurrentTask;
 module.exports.toggleCurrentCompletedTasks = toggleCurrentCompletedTasks;
 module.exports.retrieveCompletedTasks = retrieveCompletedTasks;
 module.exports.deleteCompletedTask = deleteCompletedTask;
+module.exports.retrieveUserStats = retrieveUserStats;

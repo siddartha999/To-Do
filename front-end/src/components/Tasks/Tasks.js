@@ -47,6 +47,7 @@ const Tasks = () => {
             });
             currentTotalCount.current = response.data?.total;
             setCurrentTasks(response.data?.tasks);
+            setCurrentPaginationIndex(offset ? offset : 1);
         }
         catch(err) {
             if(err?.response?.status === 401) {
@@ -73,7 +74,9 @@ const Tasks = () => {
                 }
             });
             completedTotalCount.current = response.data?.total;
-            setCompletedTasks(response.data?.tasks);
+            setCompletedTasks(response.data?.tasks);console.log(offset, completedPaginationIndex);
+            if(offset !== completedPaginationIndex)
+                setCompletedPaginationIndex(offset ? offset : 1);
         }
         catch(err) {
             if(err?.response?.status === 401) {
@@ -127,11 +130,19 @@ const Tasks = () => {
     };
 
     /**
-     * Handler to paginate.
+     * Handler to paginate current tasks.
      */
-     const handlePaginationChange = (event, value) => {
+     const handleCurrentTasksPaginationChange = (event, value) => {
         setCurrentPaginationIndex(value);
         retrieveCurrentTasks(value);
+    };
+
+    /**
+     * Handler to paginate completed tasks.
+     */
+    const handleCompletedTasksPaginationChange = (event, value) => {
+        setCompletedPaginationIndex(value);
+        retrieveCompletedTasks(value);
     };
 
     /**
@@ -159,7 +170,6 @@ const Tasks = () => {
             });
             if(response.data.total) {
                 if(response.data.total % 10 === 0) {
-                    setCurrentPaginationIndex(currentPaginationIndex - 1);
                     retrieveCurrentTasks(currentPaginationIndex - 1);
                 }
                 else {
@@ -201,7 +211,6 @@ const Tasks = () => {
             });
             if(response.data.total) {
                 if(response.data.total % 10 === 0) {
-                    setCompletedPaginationIndex(completedPaginationIndex - 1);
                     retrieveCompletedTasks(completedPaginationIndex - 1);
                 }
                 else {
@@ -254,7 +263,6 @@ const Tasks = () => {
             raiseSnackbarMessage(response.data.message, 'success');
             if(response.data.currentCount) {
                 if(response.data.currentCount % 10 === 0) {
-                    setCurrentPaginationIndex(currentPaginationIndex - 1);
                     retrieveCurrentTasks(currentPaginationIndex - 1);
                 }
                 else {
@@ -298,7 +306,6 @@ const Tasks = () => {
             raiseSnackbarMessage(response.data.message, 'success');
             if(response.data.completedCount) {
                 if(response.data.completedCount % 10 === 0) {
-                    setCompletedPaginationIndex(completedPaginationIndex - 1);
                     retrieveCompletedTasks(completedPaginationIndex - 1);
                 }
                 else {
@@ -362,7 +369,7 @@ const Tasks = () => {
                 {
                     currentTotalCount.current && currentTotalCount.current > 0 ? 
                         <div className="CurrentTasks-pagination-wrapper">
-                            <Pagination count={currentPaginationCount} page={currentPaginationIndex} onChange={handlePaginationChange} 
+                            <Pagination count={currentPaginationCount} page={currentPaginationIndex} onChange={handleCurrentTasksPaginationChange} 
                                 variant="outlined" color="primary" />  
                         </div> 
                         : null
@@ -394,7 +401,7 @@ const Tasks = () => {
                 {
                     completedTotalCount.current && completedTotalCount.current > 0 ? 
                         <div className="CurrentTasks-pagination-wrapper">
-                            <Pagination count={completedPaginationCount} page={completedPaginationIndex} onChange={handlePaginationChange} 
+                            <Pagination count={completedPaginationCount} page={completedPaginationIndex} onChange={handleCompletedTasksPaginationChange} 
                                 variant="outlined" color="primary" />  
                         </div> 
                         : null
