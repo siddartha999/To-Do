@@ -3,3 +3,37 @@
   height: 95vh;
   font-family: Copernicus, "Libre Baskerville", Georgia, serif;
 }
+
+.App-body {
+  height: 95%;
+}
+
+.App-Tasks-wrapper {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  padding-top: 0.5rem;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px lightgrey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: lightgrey; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: black; 
+}

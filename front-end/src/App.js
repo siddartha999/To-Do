@@ -39,7 +39,9 @@ const App = () => {
     <>
       <ButtonAppBar />
       <div className="App-body">
-        <CurrentTasks />
+        <div className='App-Tasks-wrapper'>
+          <CurrentTasks />
+        </div>
       </div>
     </>
   );
