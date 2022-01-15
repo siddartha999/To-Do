@@ -1,0 +1,20 @@
+.CurrentTasks {
+    width: 50%;
+}
+
+.CurrentTasks-add-task-wrapper {
+    width: 100%;
+    display: flex;
+}
+
+.CurrentTasks-add-task {
+    width: 80%;
+}
+
+.CurrentTasks-add-task >  .MuiInput-root.MuiInput-underline {
+    width: 100%;
+}
+
+.CurrentTasks-add-icon {
+    cursor: pointer;
+}
