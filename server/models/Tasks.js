@@ -4,11 +4,11 @@
  const mongoose = require('mongoose');
 
  const tasksSchema = mongoose.Schema({
-     userId: {
+     _id: {
          type: String,
          required: true
      },
-     inProgress: {
+     current: {
          type: Array,
          default: []
      },
@@ -20,7 +20,7 @@
         type: Array,
         default: []
      },
-     inProgressCount: {
+     currentCount: {
          type: Number,
          default: 0
      },
@@ -33,9 +33,5 @@
          default: 0
      }
  });
-
-tasksSchema.index({
-    userId: 'text'
-});
 
 module.exports = mongoose.model('Tasks', tasksSchema);

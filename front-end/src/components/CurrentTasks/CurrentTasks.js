@@ -89,12 +89,13 @@ const CurrentTasks = () => {
             </div>
             <div className='CurrentTasks-tasks-wrapper'>
                 {
-                    currentTasks && currentTasks.length &&
+                    currentTasks && currentTasks.length ?
                     currentTasks.map((task, idx) => (
                         <div className='CurrentTasks-current-task' key={idx}>
                             <p>{task.task}</p>
                         </div>
                     ))
+                    : null
                 }
             </div>
         </div>

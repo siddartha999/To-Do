@@ -30,5 +30,8 @@ app.use(cors(corsOptions));
 const oauthRoute = require('./routes/auth');
 app.use('/api/login', oauthRoute);
 
+const tasksRoute = require('./routes/tasks');
+app.use('/api/tasks', tasksRoute);
+
 
 app.listen(PORT, () => console.log("Server is up & running!"));
